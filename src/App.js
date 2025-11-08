@@ -9,7 +9,6 @@ import React, { useState, useRef, useEffect} from 'react';
 function App() {
     const [clicked, setClicked] = useState(false);
     const [clickedYes, setClickedYes] = useState(false);
-    const [position, setPosition] = useState({top: 200, left: 200});
     const [dodgeActive, setDodgeActive] = useState(false);
     const bgm = useRef(new Audio(backgroundMusic));
     const buttonRef = useRef(null);
@@ -69,7 +68,7 @@ function App() {
             style={{ backgroundImage: `url(${background})`}}
         >
             <div 
-                className='w-[600px] h-[400px] bg-jordy-blue rounded-lg shadow-lg relative flex flex-col items-center justify-between p-3'
+                className='w-[760px] h-[560px] bg-jordy-blue rounded-lg shadow-lg relative flex flex-col items-center justify-between p-6'
                 style={{
                     borderWidth: '8px',
                     borderStyle: 'solid',
@@ -122,31 +121,33 @@ function App() {
                                 <br />
                                 ‿︵‿︵︵‿︵‿୨♡୧‿︵‿︵‿︵‿︵
                             </p>
-                            <div className='w-full px-4 mt-2 flex flex-col items-center justify-center' style={{ maxHeight: '200px', overflowY: 'auto' }}>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    She walks by, and my world forgets its rush,
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    Like time itself learns to blush.
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    Her voice isn't loud — it lingers, Soft,
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    staying longer than touch on fingers.
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    She teases, she hides, she looks away,
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    Yet something in her eyes makes me stay.
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    Maybe she knows, maybe she pretends not to,
-                                </p>
-                                <p className='text-white text-xl font-medium text-center mb-3'>
-                                    But every version of my peace begins with you.
-                                </p>
+                            <div className='w-full px-6 mt-2 flex flex-col items-center justify-center'>
+                                <div className='max-w-[480px]'>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        She walks by, and my world forgets its rush,
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        Like time itself learns to blush.
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        Her voice i sn't loud — it lingers, Soft,
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        staying longer than touch on fingers.
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        She teases, she hides, she looks away,
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        Yet something in her eyes makes me stay.
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        Maybe she knows, maybe she pretends not to,
+                                    </p>
+                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                        But every version of my peace begins with you.
+                                    </p>
+                                </div>
                             </div>
 
                             <div className='relative flex justify-center gap-4 mt-4 w-full'>
