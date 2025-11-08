@@ -1,0 +1,185 @@
+import background from './assets/background.jpg';
+import backgroundMusic from './assets/bgm.mp3';
+import photobooth from './assets/photobooth.png';
+import pbStrip from './assets/photoboothStrip.png';
+import rolife from './assets/rolifeCarriage.png';
+import './App.css';
+import React, { useState, useRef, useEffect} from 'react';
+
+function App() {
+    const [clicked, setClicked] = useState(false);
+    const [clickedYes, setClickedYes] = useState(false);
+    const [position, setPosition] = useState({top: 200, left: 200});
+    const [dodgeActive, setDodgeActive] = useState(false);
+    const bgm = useRef(new Audio(backgroundMusic));
+    const buttonRef = useRef(null);
+
+    const start = () => {
+        bgm.current.loop = true;
+        bgm.current.play();
+
+        setTimeout(() => setDodgeActive(true), 5000);
+    }
+
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (!dodgeActive || !buttonRef.current) return;
+
+            const button = buttonRef.current.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            const buttonX = button.left + button.width / 2;
+            const buttonY = button.top + button.height / 2;
+
+            const distance = Math.hypot(mouseX - buttonX, mouseY - buttonY);
+
+            if (distance < 150) {
+                const angle = Math.atan2(buttonY - mouseY, buttonX - mouseX);
+                const moveX = Math.cos(angle) * 150;
+                const moveY = Math.sin(angle) * 150;
+
+                let newLeft = button.left + moveX;
+                let newTop = button.top + moveY;
+
+                const padding = 20; // prevent clipping offscreen
+                const maxLeft = window.innerWidth - button.width - padding;
+                const maxTop = window.innerHeight - button.height - padding;
+                const minLeft = padding;
+                const minTop = padding;
+
+                newLeft = Math.min(maxLeft, Math.max(minLeft, newLeft));
+                newTop = Math.min(maxTop, Math.max(minTop, newTop));
+
+                buttonRef.current.style.position = "fixed"; // fixed to viewport
+                buttonRef.current.style.left = `${newLeft}px`;
+                buttonRef.current.style.top = `${newTop}px`;
+                buttonRef.current.style.transition = "left 0.2s, top 0.2s";
+            }
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [dodgeActive]);
+
+    return (
+        <div 
+            className='h-screen w-screen flex items-center justify-center bg-cover bg-center'
+            style={{ backgroundImage: `url(${background})`}}
+        >
+            <div 
+                className='w-[600px] h-[400px] bg-jordy-blue rounded-lg shadow-lg relative flex flex-col items-center justify-between p-3'
+                style={{
+                    borderWidth: '8px',
+                    borderStyle: 'solid',
+                    borderImage: 'repeating-linear-gradient(45deg, white 0 10px, #ea84c9ff 0 20px) 1'
+                }}
+            >
+
+                {!clicked ?  (
+                    <>
+                    <p className='text-white font-bold text-4xl text-center leading-loose mt-6'>
+                        HEY YOU! ʕ•́ᴥ•̀ʔっ♡
+                        <br />
+                        <br />
+                    </p>
+                    <br />
+                    <button 
+                        onClick={() => {setClicked(true); start();}}
+                        className='bg-plum-web text-white font-bold py-2 px-4 rounded-lg border-2 border-white mb-16'
+                    >
+                        Click Here {'<'}3
+                    </button>
+                    </>
+                ) : !clickedYes ? (
+                        <>
+                            <img
+                                src={photobooth}
+                                alt="top left"
+                                className="absolute top-6 left-4 w-30 h-30 -rotate-12 object-contain"    
+                            />
+                            <img
+                                src={pbStrip}
+                                alt="top left1"
+                                className="absolute top-8 left-20 w-16 h-16 -rotate-6 object-contain"    
+                            />
+                            <img
+                                src={rolife}
+                                alt="top right"
+                                className="absolute top-2 right-4 w-32 h-32 rotate-12 object-contain"    
+                            />
+
+                            <p className='text-blue-900 font-bold text-sm text-center'>
+                                ‿︵‿︵︵‿︵‿୨♡୧‿︵‿︵‿︵‿︵
+                                <br />
+                            
+                                <br />
+                                A Poem for You ❤️
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                ‿︵‿︵︵‿︵‿୨♡୧‿︵‿︵‿︵‿︵
+                            </p>
+                            <div className='w-full px-4 mt-2 flex flex-col items-center justify-center' style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    She walks by, and my world forgets its rush,
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    Like time itself learns to blush.
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    Her voice isn't loud — it lingers, Soft,
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    staying longer than touch on fingers.
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    She teases, she hides, she looks away,
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    Yet something in her eyes makes me stay.
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    Maybe she knows, maybe she pretends not to,
+                                </p>
+                                <p className='text-white text-xl font-medium text-center mb-3'>
+                                    But every version of my peace begins with you.
+                                </p>
+                            </div>
+
+                            <div className='relative flex justify-center gap-4 mt-4 w-full'>
+                                <button 
+                                    onClick={() => {console.log("yes button clicked"); setClickedYes(true);}}
+                                    className='bg-plum-web text-white font-bold py-2 px-4 rounded-lg border-2 border-white object-center w-32'
+                                >
+                                Click Here {'( ˶ˆᗜˆ˵ )'}
+                                </button>
+                                
+                                
+                            </div>
+                            
+                        </>
+                ) : (
+                    <>
+                        <p className='text-white font-medium text-6xl text-center pt-32'> 
+                            Yay ♡⸜(˶˃ ᵕ ˂˶)⸝♡
+                        </p>
+                        <p className='text-white font-medium text-xl text-center pb-6'>
+                            You were born to be poem and i , my darling ,
+                            my sun , i choose to be your poet  ❤️
+                     
+                            
+                            
+                        </p>    
+                    </>
+                )}
+                
+
+            </div>
+        </div>
+    );
+}
+
+export default App;
