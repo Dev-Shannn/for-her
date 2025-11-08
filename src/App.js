@@ -68,7 +68,7 @@ function App() {
             style={{ backgroundImage: `url(${background})`}}
         >
             <div 
-                className='w-[760px] h-[560px] bg-jordy-blue rounded-lg shadow-lg relative flex flex-col items-center justify-between p-6'
+                className='w-full max-w-[760px] bg-jordy-blue rounded-lg shadow-lg relative flex flex-col items-center justify-between p-6 mx-4 min-h-[420px] sm:min-h-[520px] md:min-h-[560px]'
                 style={{
                     borderWidth: '8px',
                     borderStyle: 'solid',
@@ -121,30 +121,30 @@ function App() {
                                 <br />
                                 ‿︵‿︵︵‿︵‿୨♡୧‿︵‿︵‿︵‿︵
                             </p>
-                            <div className='w-full px-6 mt-2 flex flex-col items-center justify-center'>
-                                <div className='max-w-[480px]'>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                            <div className='w-full px-4 mt-2 flex flex-col items-center justify-center'>
+                                <div className='max-w-[420px] sm:max-w-[480px] md:max-w-[520px]'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         She walks by, and my world forgets its rush,
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         Like time itself learns to blush.
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
-                                        Her voice i sn't loud — it lingers, Soft,
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
+                                        Her voice isn't loud — it lingers, soft,
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         staying longer than touch on fingers.
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         She teases, she hides, she looks away,
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         Yet something in her eyes makes me stay.
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         Maybe she knows, maybe she pretends not to,
                                     </p>
-                                    <p className='text-white text-lg font-medium text-center mb-2'>
+                                    <p className='text-white text-base sm:text-lg font-medium text-center mb-1 sm:mb-2'>
                                         But every version of my peace begins with you.
                                     </p>
                                 </div>
